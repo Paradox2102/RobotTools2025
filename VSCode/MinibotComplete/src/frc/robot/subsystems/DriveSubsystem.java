@@ -24,14 +24,14 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int k_rightEncoderPin1 = Device.Q2_INT;
   private static final int k_rightEncoderPin2 = Device.Q2_DIR;
 
-  public static final double k_minPowerLeft = 0.27;
-  public static final double k_minPowerRight = 0.27;
-  public static final double k_maxSpeed = 1000;
+  public static final double k_minPowerLeft = 0.28;
+  public static final double k_minPowerRight = 0.29;
+  public static final double k_maxSpeed = 1600;
 
   private static final double k_Fleft = 1 / k_maxSpeed;
-  private static final double k_Fright = 0.95 / k_maxSpeed;
-  private static final double k_P = 0.001; // Use the correct number for your robot
-  private static final double k_I = 0.0005;
+  private static final double k_Fright = 1 / k_maxSpeed;
+  private static final double k_P = 0.002; // Use the correct number for your robot
+  private static final double k_I = 0.0003;
   private static final double k_IZone = 150;
 
   private PWMMotor m_leftMotor = new PWMMotor(k_leftMotorPWMPin, k_leftMotorDirPin);

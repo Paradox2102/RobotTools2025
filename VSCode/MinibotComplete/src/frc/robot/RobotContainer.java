@@ -37,7 +37,7 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final DigitalInput m_irSensor = new DigitalInput(Device.IO_4);
+  private final DigitalInput m_irSensor = new DigitalInput(Device.IO_1);
   private final CommandJoystick m_joystick = new CommandJoystick(0);
   private final CommandXboxController m_xbox = new CommandXboxController(0);
 
@@ -62,12 +62,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_joystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem, 0.75, 3.0));
     m_joystick.button(2).onTrue(new DriveForDistanceCommand(m_driveSubsystem, 0.6, 30));
-    m_joystick.button(3).onTrue(new TestMotorSpeedCommand(m_driveSubsystem));
-    m_joystick.button(4).toggleOnTrue(new CalibrateSpeedCommand(m_driveSubsystem));
+    m_joystick.button(3).toggleOnTrue(new TestMotorSpeedCommand(m_driveSubsystem));
+    m_joystick.button(4).whileTrue(new CalibrateSpeedCommand(m_driveSubsystem));
     m_joystick.button(5).onTrue(new TurnCommand(m_driveSubsystem, 0.5, -180));
     m_joystick.button(6).onTrue(new DriveCourseCommand(m_driveSubsystem));
     m_joystick.button(7).onTrue(new DriveToLineCommand(m_driveSubsystem, m_irSensor));
-    m_joystick.button(8).onTrue(new EscapeCommand(m_driveSubsystem, m_irSensor));
+    m_joystick.button(8).toggleOnTrue(new EscapeCommand(m_driveSubsystem, m_irSensor));
   }
 
   /**

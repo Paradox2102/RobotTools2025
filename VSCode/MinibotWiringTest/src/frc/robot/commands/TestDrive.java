@@ -21,7 +21,7 @@ public class TestDrive extends Command {
   private final Timer m_timer = new Timer();
   private final Encoder m_leftEncoder;
   private final Encoder m_rightEncoder;
-  private final static double k_power = 0.5;
+  private final static double k_power = 0.7;
 
   /**
    * Creates a new TestDrive.
