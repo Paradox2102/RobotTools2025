@@ -18,7 +18,7 @@ m_steeringMotor = new PWMMotor(steeringPWM, steeringDir, i2cAddr);
 m_driveMotor = new PWMMotor(drivePWM, driveDir, i2cAddr);
 }
 
-}
+
 
 public void setSteeringPower(double power) {
     m_steeringMotor.setControlMode(SmartMotorMode.Power);
@@ -27,5 +27,4 @@ public void setSteeringPower(double power) {
 public double getSteeringPosition() {
     return m_steeringEncoder.getPosition();
 }
-
 }
