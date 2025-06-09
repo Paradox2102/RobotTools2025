@@ -37,7 +37,7 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final DigitalInput m_irSensor = new DigitalInput(Device.IO_1);
+  private final DigitalInput m_irSensor = new DigitalInput(Device.IO_4);
   private final CommandJoystick m_joystick = new CommandJoystick(0);
   private final CommandXboxController m_xbox = new CommandXboxController(0);
 

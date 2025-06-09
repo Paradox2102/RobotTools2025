@@ -12,17 +12,17 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<MinibotWiringTest>",
+            "name": "Debug (Launch)-Main<JohnMinibot>",
             "request": "launch",
             "mainClass": "frc.robot.Main",
-            "projectName": "MinibotWiringTest"
+            "projectName": "JohnMinibot"
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Launch<MinibotWiringTest>",
+            "name": "Debug (Launch)-Launch<JohnMinibot>",
             "request": "launch",
             "mainClass": "robotCore.Launch",
-            "projectName": "MinibotWiringTest",
+            "projectName": "JohnMinibot",
             "args": "10.21.2.2:8999 frc.robot.Main --"
         }
     ]

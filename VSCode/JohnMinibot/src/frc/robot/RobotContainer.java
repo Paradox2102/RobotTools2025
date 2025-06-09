@@ -7,17 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import frc.robot.commands.DriveForTimeCommand;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.TestDrive;
-import frc.robot.commands.TestLineSensor;
-import frc.robot.commands.TestMotorSpeedCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
-import robotCore.Device;
-import robotCore.DigitalInput;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -31,7 +26,6 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final DigitalInput m_lineSensor = new DigitalInput(Device.IO_4);
   private final CommandJoystick m_commandJoystick = new CommandJoystick(0);
 
   private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
@@ -51,9 +45,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_commandJoystick.button(1).toggleOnTrue(new TestDrive(m_driveSubsystem));
-    m_commandJoystick.button(2).toggleOnTrue(new TestMotorSpeedCommand(m_driveSubsystem));
-    m_commandJoystick.button(3).toggleOnTrue(new TestLineSensor(m_lineSensor));
+    m_commandJoystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem));
   }
 
   /**

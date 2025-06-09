@@ -26,7 +26,7 @@ public class EscapeCommand extends Command {
     private final DriveSubsystem m_subsystem;
     private final DigitalInput m_irSensor;
     private State m_state;
-    private static final double k_driveSpeed = 0.4;
+    private static final double k_driveSpeed = 0.7;
     private final Timer m_timer = new Timer();
     private static final double k_backingTime = 0.5;
     private static final double k_turnSpeed = 0.4;
