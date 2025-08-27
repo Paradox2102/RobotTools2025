@@ -24,7 +24,7 @@ public class TestSteeringMotors extends Command {
   private final SwerveModule m_FRModule;
 
   private final static double k_time = 2.0;
-  private final static double k_power = 0.5;
+  private final static double k_power = -0.75;
   private int m_state = 0;
   private final Timer m_timer = new Timer();
 
@@ -68,6 +68,7 @@ public class TestSteeringMotors extends Command {
 
     Logger.log("TestSterringMotor", 1, String.format(",%f,%f,%f,%f", m_FLModule.getSteeringPosition(), m_BLModule.getSteeringPosition(), m_BRModule.getSteeringPosition(), m_FRModule.getSteeringPosition()));
 
+    // m_timer.reset();
     if (m_timer.get() >= k_time) {
       m_subsystem.stop();
 

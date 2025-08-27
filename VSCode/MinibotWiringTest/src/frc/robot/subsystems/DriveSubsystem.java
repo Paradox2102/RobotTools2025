@@ -8,27 +8,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import robotCore.Device;
 import robotCore.Encoder;
 import robotCore.Logger;
+import robotCore.Minibot;
 import robotCore.PWMMotor;
 import robotCore.SmartMotor.SmartMotorMode;
 
 public class DriveSubsystem extends SubsystemBase {
-  private static final int k_leftMotorPWMPin = Device.M1_2_PWM;
-  private static final int k_leftMotorDirPin = Device.M1_2_DIR;
-  private static final int k_rightMotorPWMPin = Device.M1_1_PWM;
-  private static final int k_rightMotorDirPin = Device.M1_1_DIR;
-  private static final int k_leftEncoderPin1 = Device.Q1_INT;
-  private static final int k_leftEncoderPin2 = Device.Q1_DIR;
-  private static final int k_rightEncoderPin1 = Device.Q2_INT;
-  private static final int k_rightEncoderPin2 = Device.Q2_DIR;
-
-
-  private PWMMotor m_leftMotor = new PWMMotor(k_leftMotorPWMPin, k_leftMotorDirPin);
-  private PWMMotor m_rightMotor = new PWMMotor(k_rightMotorPWMPin, k_rightMotorDirPin);
-  private Encoder m_leftEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, k_leftEncoderPin1, k_leftEncoderPin2);
-  private Encoder m_rightEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, k_rightEncoderPin1, k_rightEncoderPin2);
+  private PWMMotor m_leftMotor = new PWMMotor(Minibot.LeftMotorPWM, Minibot.LeftMotorDir);
+  private PWMMotor m_rightMotor = new PWMMotor(Minibot.RightMotorPWM, Minibot.RightMotorDir);
+  private Encoder m_leftEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, Minibot.LeftEncoderInt, Minibot.LeftEncoderDir);
+  private Encoder m_rightEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, Minibot.RightEncoderInt, Minibot.RightEncoderDir);
 
   /**
    * Creates a new DriveSubsystem.

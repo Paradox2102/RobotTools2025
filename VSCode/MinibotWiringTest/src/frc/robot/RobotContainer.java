@@ -18,6 +18,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import robotCore.Device;
 import robotCore.DigitalInput;
+import robotCore.Minibot;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -31,7 +32,7 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final DigitalInput m_lineSensor = new DigitalInput(Device.IO_4);
+  private final DigitalInput m_lineSensor = new DigitalInput(Minibot.IRSensor);
   private final CommandJoystick m_commandJoystick = new CommandJoystick(0);
 
   private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);

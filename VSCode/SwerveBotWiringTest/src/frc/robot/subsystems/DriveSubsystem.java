@@ -14,7 +14,7 @@ import robotCore.Swerve;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final Gyro m_gyro = new Gyro();
+  private Gyro m_gyro = null;
 
     SwerveModule m_frontLeft = new SwerveModule(Swerve.FLDrivePWM, Swerve.FLDriveDir, Swerve.FLDriveEncInt,
         Swerve.FLDriveEncDir, Swerve.FLSteeringPWM, Swerve.FLSteeringDir, Swerve.FLSteeringEncA, Swerve.FLSteeringEncB, Swerve.FLI2CAddr,
@@ -61,6 +61,9 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getYaw() {
+    if (m_gyro == null) {
+      m_gyro = new Gyro();
+    }
     return m_gyro.getYaw();
   }
 
