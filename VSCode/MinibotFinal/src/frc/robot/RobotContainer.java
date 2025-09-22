@@ -7,18 +7,19 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
-import frc.robot.commands.DriveForTimeCommand;
-import frc.robot.commands.DriveToLineCommand;
-import frc.robot.commands.EscapeCommand;
-import frc.robot.commands.TestMotorSpeedCommand;
-import frc.robot.commands.TurnCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ArcadeDriveCommand;
 import frc.robot.commands.CalibrateSpeedCommand;
 import frc.robot.commands.DriveCourseCommand;
 import frc.robot.commands.DriveForDistanceCommand;
+import frc.robot.commands.DriveForTimeCommand;
+import frc.robot.commands.DriveToLineCommand;
+import frc.robot.commands.EscapeCommand;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TestMotorSpeedCommand;
+import frc.robot.commands.TurnCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import robotCore.DigitalInput;
@@ -36,11 +37,11 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final CommandJoystick m_joystick = new CommandJoystick(0);
   private final DigitalInput m_irSensor = new DigitalInput(Minibot.IRSensor);
+  private final CommandJoystick m_joystick = new CommandJoystick(0);
+  private final CommandXboxController m_xbox = new CommandXboxController(0);
 
-
-  private final ArcadeDriveCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
+  private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -59,11 +60,11 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_joystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem, 0.50, 3.0));
-    m_joystick.button(2).onTrue(new DriveForDistanceCommand(m_driveSubsystem, 0.75, 30));
+    m_joystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem, 0.75, 3.0));
+    m_joystick.button(2).onTrue(new DriveForDistanceCommand(m_driveSubsystem, 0.6, 30));
     m_joystick.button(3).onTrue(new TestMotorSpeedCommand(m_driveSubsystem));
-    m_joystick.button(4).toggleOnTrue(new CalibrateSpeedCommand(m_driveSubsystem));
-    m_joystick.button(5).onTrue(new TurnCommand(m_driveSubsystem, 0.3, -180));
+    m_joystick.button(4).whileTrue(new CalibrateSpeedCommand(m_driveSubsystem));
+    m_joystick.button(5).onTrue(new TurnCommand(m_driveSubsystem, 0.5, -180));
     m_joystick.button(6).onTrue(new DriveCourseCommand(m_driveSubsystem));
     m_joystick.button(7).onTrue(new DriveToLineCommand(m_driveSubsystem, m_irSensor));
     m_joystick.button(8).onTrue(new EscapeCommand(m_driveSubsystem, m_irSensor));

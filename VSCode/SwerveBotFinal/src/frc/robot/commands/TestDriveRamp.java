@@ -46,7 +46,7 @@ public class TestDriveRamp extends Command {
   @Override
   public void initialize() {
     Logger.log("TestDriveRamp", 2, "initialize()");
-    Logger.log("TestDriveRamp", 1, ",power,FL,BL,BR,FR");
+    Logger.log("TestDriveRamp", 1, ",power,FL,BL,BR,FR,FLS,BLS,BRS,FRS");
     m_power = 0;
     m_frontLeft.setSteeringPosition(0);
     m_backLeft.setSteeringPosition(0);
@@ -65,8 +65,11 @@ public class TestDriveRamp extends Command {
     m_backRight.setDrivePower(m_power);
     m_frontRight.setDrivePower(m_power);
 
-    Logger.log("TestDriveRamp", 1, String.format(",%f,%f,%f,%f,%f", m_power, m_frontLeft.getDriveSpeed(),
-        m_backLeft.getDriveSpeed(), m_backRight.getDriveSpeed(), m_frontRight.getDriveSpeed()));
+    Logger.log("TestDriveRamp", 1, String.format(",%f,%f,%f,%f,%f,%f,%f,%f,%f", m_power, m_frontLeft.getDriveSpeed(),
+        m_backLeft.getDriveSpeed(), m_backRight.getDriveSpeed(), m_frontRight.getDriveSpeed(),
+        m_frontLeft.getSteeringPositionInDegrees(), m_backLeft.getSteeringPositionInDegrees(),
+        m_backRight.getSteeringPositionInDegrees(), m_frontRight.getSteeringPositionInDegrees()));
+
 
     m_power += 0.006;
   }

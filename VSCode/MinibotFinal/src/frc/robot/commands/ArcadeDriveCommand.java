@@ -18,7 +18,6 @@ import robotCore.Logger;
 public class ArcadeDriveCommand extends Command {
   private final DriveSubsystem m_subsystem;
   private final CommandJoystick m_joystick;
-  private final static double k_deadZone = 0.05;
 
   /**
    * Creates a new ArcadeDriveCommand.
@@ -30,7 +29,6 @@ public class ArcadeDriveCommand extends Command {
 
     m_subsystem = subsystem;
     m_joystick = joystick;
-
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
   }
@@ -49,15 +47,10 @@ public class ArcadeDriveCommand extends Command {
     double y = m_joystick.getY();
     double x = m_joystick.getX();
 
-    x = Math.abs(x) * x;
-    y = Math.abs(y) * y;
+    x = x * Math.abs(x);
+    y = y * Math.abs(y);
 
-    if ((Math.abs(x) < k_deadZone) && (Math.abs(y) < k_deadZone)) {
-      m_subsystem.stop();
-    }
-    else {
-      m_subsystem.setSpeed(y + x, y - x);
-    }
+    m_subsystem.setSpeed(y + x, y - x);
   }
 
   // Called once the command ends or is interrupted.

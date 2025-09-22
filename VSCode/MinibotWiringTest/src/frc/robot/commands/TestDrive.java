@@ -21,7 +21,7 @@ public class TestDrive extends Command {
   private final Timer m_timer = new Timer();
   private final Encoder m_leftEncoder;
   private final Encoder m_rightEncoder;
-  private final static double k_power = 0.7;
+  private final static double k_power = -0.7;
 
   /**
    * Creates a new TestDrive.
@@ -47,13 +47,16 @@ public class TestDrive extends Command {
     m_timer.reset();
     // m_subsystem.setPower(0.5, 0);
     m_subsystem.setPower(k_power, 0);
+    m_leftEncoder.reset();
+    m_rightEncoder.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     Logger.log("TestDrive", -1, "execute()");
-    Logger.log("TestDrive", 1, String.format("left=%d, right=%d", m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
+    Logger.log("TestDrive", 1, String.format("left=%d, right=%d, leftp=%d, rightp=%d", 
+        m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed(), m_leftEncoder.getPosition(), m_rightEncoder.getPosition()));
     if (m_timer.get() >= 2) {
       m_subsystem.setPower(0, k_power);
     }

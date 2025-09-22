@@ -9,8 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
-import robotCore.Encoder;
 import robotCore.Logger;
+import robotCore.Encoder;
 
 /**
  * An example command that uses an example subsystem.
@@ -21,7 +21,6 @@ public class TurnCommand extends Command {
   private double m_angle;
   private Encoder m_leftEncoder;
   private Encoder m_rightEncoder;
-  private final double k_ticksPerDegree = 4700.0 / 360;
 
   /**
    * Creates a new TurnCommand.
@@ -33,7 +32,7 @@ public class TurnCommand extends Command {
 
     m_subsystem = subsystem;
     m_speed = speed;
-    m_angle = angle * k_ticksPerDegree;
+    m_angle = (angle * 1800) / 360;
     m_leftEncoder = m_subsystem.getLeftEncoder();
     m_rightEncoder = m_subsystem.getRightEncoder();
 
@@ -66,8 +65,8 @@ public class TurnCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     Logger.log("TurnCommand", 2, String.format("end(%b)", interrupted));
-    
-    m_subsystem.stop();
+
+    m_subsystem.setPower(0, 0);
   }
 
   // Returns true when the command should end.
@@ -76,6 +75,9 @@ public class TurnCommand extends Command {
     Logger.log("TurnCommand", -1, "isFinished()");
 
     int delta = m_leftEncoder.get() - m_rightEncoder.get();
+
+    Logger.log("TurnCommand", 1, String.format("left=%d,right=%d,delta=%d,angle=%f", 
+          m_leftEncoder.get(), m_rightEncoder.get(), delta, m_angle));
 
     return (Math.abs(delta) >= Math.abs(m_angle));
   }
