@@ -13,13 +13,13 @@ import frc.robot.subsystems.DriveSubsystem;
 import robotCore.Logger;
 
 /**
- * This command will drive the robot forward for a specific amount of time.
+ * An example command that uses an example subsystem.
  */
 public class DriveForTimeCommand extends Command {
   private final DriveSubsystem m_subsystem;
   private Timer m_timer = new Timer();
-  private double m_power;
-  private double m_time;
+  private double m_power; // motor power percent. 0.0 to 1.0
+  private double m_time; // motor run time (both motors), seconds
 
   /**
    * Creates a new DriveForTimeCommand.
@@ -30,8 +30,11 @@ public class DriveForTimeCommand extends Command {
     Logger.log("DriveForTimeCommand", 3, "DriveForTimeCommand()");
 
     m_subsystem = subsystem;
+
+    // Save the parameter variables for motor power and run time
     m_power = power;
     m_time = time;
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
   }
@@ -42,7 +45,9 @@ public class DriveForTimeCommand extends Command {
     Logger.log("DriveForTimeCommand", 2, "initialize()");
 
     m_subsystem.setPower(m_power, m_power);
+    // Set timer to zero
     m_timer.reset();
+    // Start the timer
     m_timer.start();
   }
 
@@ -57,7 +62,7 @@ public class DriveForTimeCommand extends Command {
   public void end(boolean interrupted) {
     Logger.log("DriveForTimeCommand", 2, String.format("end(%b)", interrupted));
 
-    m_subsystem.setPower(0, 0);
+    m_subsystem.stop();
   }
 
   // Returns true when the command should end.

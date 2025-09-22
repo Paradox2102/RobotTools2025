@@ -19,22 +19,15 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Launch-2<SwerveBotBlue>",
+            "name": "Debug (Launch)-Launch<SwerveBotBlue>",
             "request": "launch",
             "mainClass": "robotCore.Launch",
             "projectName": "SwerveBotBlue",
             "args": "10.21.2.2:8999 frc.robot.Main --"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-Launch-50<SwerveBotBlue>",
-            "request": "launch",
-            "mainClass": "robotCore.Launch",
-            "projectName": "SwerveBotBlue",
-            "args": "192.168.0.50:8999 frc.robot.Main --"
         }
     ]
 }
+
 
 
 

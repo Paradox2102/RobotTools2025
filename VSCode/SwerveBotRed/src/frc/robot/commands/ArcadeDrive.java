@@ -35,8 +35,6 @@ public class ArcadeDrive extends Command {
   private final DoubleSupplier m_y;
   private final DoubleSupplier m_turn;
   private final Boolean m_fieldRelative;
-  private Boolean m_rotating = false;
-  private double m_targetAngleInDegrees = 0;
 
   private final SlewRateLimiter m_xspeedLimiter = new SlewRateLimiter(3);
   private final SlewRateLimiter m_yspeedLimiter = new SlewRateLimiter(3);
@@ -65,34 +63,10 @@ public class ArcadeDrive extends Command {
     m_mode = mode;
   }
 
-  private double maintainOrientation(double rot) {
-    if (rot == 0) {
-      if (m_rotating) {
-        // Switching from manual to auto so save the current yaw
-        m_rotating = false;
-        m_targetAngleInDegrees = m_subsystem.getPose2d().getRotation().getDegrees();
-      } else {
-        // No manual rotation so calculate the rot need to maintain the current
-        // orientation
-        rot = m_subsystem.computeAutoAim(m_targetAngleInDegrees);
-      }
-    } else {
-      // Manual rotation so use the rot input from the joystick
-      // Logger.log("ArcadeDriveMaintainOrientation", 1, String.format("rot=%f",
-      // rot));
-      m_rotating = true;
-    }
-
-    return rot;
-  }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Logger.log("ArcadeDrive", 2, "initialize()");
-
-    m_targetAngleInDegrees = m_subsystem.getPose2d().getRotation().getDegrees();
-    m_rotating = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -121,24 +95,6 @@ public class ArcadeDrive extends Command {
     // the right by default.
     double rot = -m_rotLimiter.calculate(MathUtil.applyDeadband(turn, 0.20))
         * DriveSubsystem.k_maxAngularSpeed;
-
-    switch (m_mode) {
-      case Normal:
-        break; // do nothing
-
-      case MaintainOrientation:
-        rot = maintainOrientation(rot);
-        break;
-
-      case TrackTarget1:
-      case TrackTarget2:
-      case TrackTarget3:
-      case TrackTarget4:
-        // Logger.log("ArcadeDrive", 1, String.format("Set Target %d", m_mode.ordinal() - 1));
-        m_targetAngleInDegrees = m_subsystem.getTargetAngle(m_mode.ordinal() - 1);
-        rot = m_subsystem.computeAutoAim(m_targetAngleInDegrees);
-        break;
-    }
 
     if ((xSpeed != 0) || (ySpeed != 0) || (rot != 0)) {
       m_subsystem.drive(xSpeed, ySpeed, rot, m_fieldRelative, ((TimedRobot) RobotCoreBase.getInstance()).getPeriod());

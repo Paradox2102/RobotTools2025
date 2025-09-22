@@ -17,12 +17,12 @@ import robotCore.Logger;
  */
 public class DriveForDistanceCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private double m_speed;
-  private double m_distance;
+  private final double m_speed; // motor power percent. 0.0 to 1.0
+  private final double m_distance;
   private Encoder m_leftEncoder;
   private Encoder m_rightEncoder;
-
-  private static final double k_scale = 0.001;
+  private static final double k_scale = 0.005;
+  private static final double k_ticksPerInch = 2000 / 16.0;
 
   /**
    * Creates a new DriveForDistanceCommand.
@@ -33,9 +33,11 @@ public class DriveForDistanceCommand extends Command {
     Logger.log("DriveForDistanceCommand", 3, "DriveForDistanceCommand()");
 
     m_subsystem = subsystem;
+
+    // Save the parameter variables for motor power and run time
     m_speed = speed;
-    m_distance = (distance * 4000) / 84;
-    m_leftEncoder = subsystem.getLeftEncoder();
+    m_distance = distance * k_ticksPerInch;
+    m_leftEncoder = m_subsystem.getLeftEncoder();
     m_rightEncoder = subsystem.getRightEncoder();
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -47,10 +49,11 @@ public class DriveForDistanceCommand extends Command {
   public void initialize() {
     Logger.log("DriveForDistanceCommand", 2, "initialize()");
 
+    m_subsystem.setSpeed(m_speed, m_speed);
+
+    // Reset Encoder before using
     m_leftEncoder.reset();
     m_rightEncoder.reset();
-
-    m_subsystem.setSpeed(m_speed, m_speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -70,7 +73,7 @@ public class DriveForDistanceCommand extends Command {
   public void end(boolean interrupted) {
     Logger.log("DriveForDistanceCommand", 2, String.format("end(%b)", interrupted));
 
-    m_subsystem.setPower(0, 0);
+    m_subsystem.stop();
   }
 
   // Returns true when the command should end.

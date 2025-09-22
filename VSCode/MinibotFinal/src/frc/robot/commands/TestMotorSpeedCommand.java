@@ -13,11 +13,15 @@ import robotCore.Encoder;
 import robotCore.Logger;
 
 /**
- * Test the maximum drive speed.
+ * An example command that uses an example subsystem.
  */
 public class TestMotorSpeedCommand extends Command {
   private final DriveSubsystem m_subsystem;
+
+  // Current power
   private double m_power;
+
+  // Encoder objects, left and right
   private final Encoder m_leftEncoder;
   private final Encoder m_rightEncoder;
 
@@ -30,6 +34,7 @@ public class TestMotorSpeedCommand extends Command {
     Logger.log("TestMotorSpeedCommand", 3, "TestMotorSpeedCommand()");
 
     m_subsystem = subsystem;
+
     m_leftEncoder = subsystem.getLeftEncoder();
     m_rightEncoder = subsystem.getRightEncoder();
 
@@ -42,6 +47,7 @@ public class TestMotorSpeedCommand extends Command {
   public void initialize() {
     Logger.log("TestMotorSpeedCommand", 2, "initialize()");
 
+    // Write header for power data in log
     Logger.log("TestMotorSpeedCommand", 0, ",Power,Left,Right");
 
     m_power = 0;
@@ -65,7 +71,8 @@ public class TestMotorSpeedCommand extends Command {
   public void end(boolean interrupted) {
     Logger.log("TestMotorSpeedCommand", 2, String.format("end(%b)", interrupted));
 
-    m_subsystem.setPower(0, 0);
+    // All done. Turn off the motors.
+    m_subsystem.stop();
   }
 
   // Returns true when the command should end.

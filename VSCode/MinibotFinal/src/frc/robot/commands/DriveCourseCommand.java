@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -23,24 +16,25 @@ public class DriveCourseCommand extends SequentialCommandGroup {
 
     m_subsystem = subsystem;
 
-    double turn90 = 65;
-    double speed = 0.5;
+    double turn90 = 86;
+    double speed = 0.4;
+    double turnSpeed = 0.3;
     double wait = 0.5;
     
     addCommands(  new DriveForDistanceCommand(m_subsystem, speed, 20),
                   new WaitCommand(wait),
-                  new TurnCommand(m_subsystem, speed, turn90),
+                  new TurnCommand(m_subsystem, turnSpeed, turn90),
                   new WaitCommand(wait),
                   new DriveForDistanceCommand(m_subsystem, speed, 10),
                   new WaitCommand(wait),
-                  new TurnCommand(m_subsystem, speed, turn90),
+                  new TurnCommand(m_subsystem, turnSpeed, turn90),
                   new WaitCommand(wait),
                   new DriveForDistanceCommand(m_subsystem, speed, 20),
                   new WaitCommand(wait),
-                  new TurnCommand(m_subsystem, speed, turn90),
+                  new TurnCommand(m_subsystem, turnSpeed, turn90),
                   new WaitCommand(wait),
                   new DriveForDistanceCommand(m_subsystem, speed, 10),
                   new WaitCommand(wait),
-                  new TurnCommand(m_subsystem, speed, turn90));
+                  new TurnCommand(m_subsystem, turnSpeed, turn90));
   }
 }

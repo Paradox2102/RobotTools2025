@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import frc.robot.Robot;
 import robotCore.Encoder;
 import robotCore.Gyro;
 import robotCore.Logger;
@@ -189,7 +188,7 @@ public class SwerveModule {
 
         state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
 
-        double da = state.angle.minus(encoderRotation).getDegrees();
+        // double da = state.angle.minus(encoderRotation).getDegrees();
 
         // if (Math.abs(da) > 90) {
         //     Logger.log(String.format("SwerveModule-%s", m_name), 1, String.format("ds=%f,ca=%f,da=%f",

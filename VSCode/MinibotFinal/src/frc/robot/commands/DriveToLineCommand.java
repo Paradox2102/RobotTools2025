@@ -16,51 +16,51 @@ import robotCore.Logger;
  * An example command that uses an example subsystem.
  */
 public class DriveToLineCommand extends Command {
-    private final DriveSubsystem m_subsystem;
-    private final DigitalInput m_irSensor;
-    private static final double k_speed = 0.5;
+  private final DriveSubsystem m_subsystem;
+  private final DigitalInput m_irSensor;
+  private static final double k_speed = 0.5;
 
-    /**
-     * Creates a new DriveToLineCommand.
-     *
-     * @param subsystem The subsystem used by this command.
-     */
-    public DriveToLineCommand(DriveSubsystem subsystem, DigitalInput irSensor) {
-        Logger.log("DriveToLineCommand", 3, "DriveToLineCommand()");
+  /**
+   * Creates a new DriveToLineCommand.
+   *
+   * @param subsystem The subsystem used by this command.
+   */
+  public DriveToLineCommand(DriveSubsystem subsystem, DigitalInput irSensor) {
+    Logger.log("DriveToLineCommand", 3, "DriveToLineCommand()");
 
-        m_subsystem = subsystem;
-        m_irSensor = irSensor;
-        // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(m_subsystem);
-    }
+    m_subsystem = subsystem;
+    m_irSensor = irSensor;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
+  }
 
-    // Called when the command is initially scheduled.
-    @Override
-    public void initialize() {
-        Logger.log("DriveToLineCommand", 2, "initialize()");
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    Logger.log("DriveToLineCommand", 2, "initialize()");
 
-        m_subsystem.setSpeed(k_speed, k_speed);
-    }
+    m_subsystem.setSpeed(k_speed, k_speed);
+  }
 
-    // Called every time the scheduler runs while the command is scheduled.
-    @Override
-    public void execute() {
-        Logger.log("DriveToLineCommand", -1, "execute()");
-    }
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    Logger.log("DriveToLineCommand", -1, "execute()");
+  }
 
-    // Called once the command ends or is interrupted.
-    @Override
-    public void end(boolean interrupted) {
-        Logger.log("DriveToLineCommand", 2, String.format("end(%b)", interrupted));
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    Logger.log("DriveToLineCommand", 2, String.format("end(%b)", interrupted));
 
-        m_subsystem.setPower(0, 0);
-    }
+    m_subsystem.setPower(0, 0);
+  }
 
-    // Returns true when the command should end.
-    @Override
-    public boolean isFinished() {
-        Logger.log("DriveToLineCommand", -1, "isFinished()");
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    Logger.log("DriveToLineCommand", -1, "isFinished()");
 
-        return (m_irSensor.get());
-    }
+    return (m_irSensor.get());
+  }
 }

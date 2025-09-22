@@ -13,24 +13,24 @@ import robotCore.Encoder;
 import robotCore.Logger;
 
 /**
- * Calibrates the speed by setting the F, P, I and IZone values.
+ * An example command that uses an example subsystem.
  */
 public class CalibrateSpeedCommand extends Command {
   private final DriveSubsystem m_subsystem;
+  private final Encoder m_leftEncoder;
+  private final Encoder m_rightEncoder;
   private final double k_speed = 0.75;
 
-  private Encoder m_leftEncoder;
-  private Encoder m_rightEncoder;
-
   /**
-   * Creates a new TestSpeedControlCommand.
+   * Creates a new CalibrateSpeedCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
   public CalibrateSpeedCommand(DriveSubsystem subsystem) {
-    Logger.log("TestSpeedControlCommand", 3, "TestSpeedControlCommand()");
+    Logger.log("CalibrateSpeedCommand", 3, "CalibrateSpeedCommand()");
 
     m_subsystem = subsystem;
+
     m_leftEncoder = m_subsystem.getLeftEncoder();
     m_rightEncoder = m_subsystem.getRightEncoder();
 
@@ -52,7 +52,7 @@ public class CalibrateSpeedCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("TestSpeedControlCommand", -1, "execute()");
+    Logger.log("CalibrateSpeedCommand", -1, "execute()");
 
     Logger.log("TestSpeedControl", 3, String.format(",%.0f,%d,%d", k_speed * DriveSubsystem.k_maxSpeed,
         m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
@@ -61,9 +61,9 @@ public class CalibrateSpeedCommand extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("TestSpeedControlCommand", 2, String.format("end(%b)", interrupted));
+    Logger.log("CalibrateSpeedCommand", 2, String.format("end(%b)", interrupted));
 
-    m_subsystem.setPower(0, 0);
+    m_subsystem.stop();
   }
 
   // Returns true when the command should end.

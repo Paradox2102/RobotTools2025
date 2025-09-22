@@ -44,10 +44,14 @@ public class EscapeCommand extends Command {
 
         m_subsystem = subsystem;
         m_irSensor = irSensor;
+
+        m_timer.start();
+
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_subsystem);
     }
 
+    // Called when the command is initially scheduled.
     private void DriveForward() {
         Logger.log("EscapeCommand", 2, "DriveForward()");
 
@@ -62,7 +66,6 @@ public class EscapeCommand extends Command {
         Logger.log("EscapeCommand", 2, "initialize()");
 
         DriveForward();
-        m_timer.start();
     }
 
     private void DrivingForward() {
