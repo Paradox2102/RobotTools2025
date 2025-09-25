@@ -51,7 +51,7 @@ public class CalibrateSteering extends Command {
     m_BLmodule.setSteeringPosition(m_angle); m_module = m_BLmodule;
     m_BRmodule.setSteeringPosition(m_angle); m_module = m_BRmodule;
     m_FRmodule.setSteeringPosition(m_angle); m_module = m_FRmodule;
-    m_module = m_BLmodule;
+    m_module = m_FRmodule;
   }
 
   // Called every time the scheduler runs while the command is scheduled.

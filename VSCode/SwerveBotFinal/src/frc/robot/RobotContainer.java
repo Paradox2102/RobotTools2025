@@ -117,14 +117,17 @@ public class RobotContainer {
     // m_commandXbox.button(8).toggleOnTrue(m_auto1);
     // XBox Controls ^^^
 
-    m_commandJoystick.button(1).toggleOnTrue(new TestSteeringRamp(m_driveSubsystem));
-    m_commandJoystick.button(2).toggleOnTrue(new TestDriveRamp(m_driveSubsystem));
-    m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
-    m_commandJoystick.button(4).onTrue(new CalibrateDistance(m_driveSubsystem));
-    m_commandJoystick.button(5).onTrue(new SetArcadeDriveMode(Mode.MaintainOrientation));
-    m_commandJoystick.button(6).onTrue(new SetArcadeDriveMode(Mode.TrackTarget4));
+    // Testing
+    // m_commandJoystick.button(1).toggleOnTrue(new TestSteeringRamp(m_driveSubsystem));
+    // m_commandJoystick.button(2).toggleOnTrue(new TestDriveRamp(m_driveSubsystem));
+    // m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
+    // m_commandJoystick.button(4).onTrue(new CalibrateDistance(m_driveSubsystem));
+    // m_commandJoystick.button(5).onTrue(new SetArcadeDriveMode(Mode.MaintainOrientation));
+    // m_commandJoystick.button(6).onTrue(new SetArcadeDriveMode(Mode.TrackTarget4));
+    // m_commandJoystick.button(11).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->-1.0, true));
+    // m_commandJoystick.button(12).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->1.0, true));
 
-    m_commandJoystick.button(11).onTrue(m_auto1);
+    // m_commandJoystick.button(11).onTrue(m_auto1);
 
 
     double da = 0;
@@ -133,14 +136,14 @@ public class RobotContainer {
     m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem, 180 + da));
     m_commandJoystick.button(10).whileTrue(new CalibrateSteering(m_driveSubsystem, 270 + da));
 
-    // m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem, false, 0));
-    // m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
-    // m_commandJoystick.button(3).onTrue(new SetArcadeDriveMode(Mode.MaintainOrientation));
-    // m_commandJoystick.button(4).onTrue(new SetArcadeDriveMode(Mode.TrackTarget4));
-    // m_commandJoystick.button(5).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->-1.0, true));
-    // m_commandJoystick.button(6).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->1.0, true));
-
-    // m_commandJoystick.button(11).toggleOnTrue(m_auto1);
+    // Run
+    m_commandJoystick.button(1).toggleOnTrue(new FeederCommand(m_feederSubsystem, true, 3));
+    m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
+    m_commandJoystick.button(3).onTrue(new SetArcadeDriveMode(Mode.MaintainOrientation));
+    m_commandJoystick.button(4).onTrue(new SetArcadeDriveMode(Mode.TrackTarget4));
+    m_commandJoystick.button(5).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->-1.0, true));
+    m_commandJoystick.button(6).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->1.0, true));
+    m_commandJoystick.button(11).toggleOnTrue(m_auto1);
   }
 
   /**

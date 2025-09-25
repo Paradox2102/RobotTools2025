@@ -17,7 +17,7 @@ import robotCore.Logger;
  */
 public class CalibrateDrive extends Command {
   private final DriveSubsystem m_subsystem;
-  private final double m_speed = DriveSubsystem.k_maxDriveSpeed * 0.5;
+  private final double m_speed = DriveSubsystem.k_maxDriveSpeed * 0.75;
   private final SwerveModule m_frontLeft;
   private final SwerveModule m_backLeft;
   private final SwerveModule m_backRight;
@@ -45,7 +45,7 @@ public class CalibrateDrive extends Command {
   @Override
   public void initialize() {
     Logger.log("CalibrateDrive", 2, "initialize()");
-    Logger.log("CalibrateDrive", 1, ",target,FL,BL,BR,FR");
+    Logger.log("CalibrateDrive", 1, ",target,FL,BL,BR,FR,FLS,BLS,BRS,FRS");
 
     m_frontLeft.setSteeringPosition(0);
     m_backLeft.setSteeringPosition(0);
@@ -67,8 +67,10 @@ public class CalibrateDrive extends Command {
   @Override
   public void execute() {
     Logger.log("CalibrateDrive", -1, "execute()");
-    Logger.log("CalibrateDrive", 1, String.format(",%f,%f,%f,%f,%f", m_speed, m_frontLeft.getDriveSpeed(),
-        m_backLeft.getDriveSpeed(), m_backRight.getDriveSpeed(), m_frontRight.getDriveSpeed()));
+    Logger.log("CalibrateDrive", 1, String.format(",%f,%f,%f,%f,%f,%f,%f,%f,%f", m_speed, m_frontLeft.getDriveSpeed(),
+        m_backLeft.getDriveSpeed(), m_backRight.getDriveSpeed(), m_frontRight.getDriveSpeed(),
+        m_frontLeft.getSteeringPositionInDegrees(), m_backLeft.getSteeringPositionInDegrees(),
+        m_backRight.getSteeringPositionInDegrees(), m_frontRight.getSteeringPositionInDegrees()));
   }
 
   // Called once the command ends or is interrupted.

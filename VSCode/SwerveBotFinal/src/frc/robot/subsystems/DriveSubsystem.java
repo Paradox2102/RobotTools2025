@@ -52,10 +52,10 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backRightMinSteeringPower = 0.29;
   private static final double k_frontRightMinsteeringPower = 0.30;
 
-  private static final int k_frontLeftSteeringZero = 1329; //1378; //1464; //1464;
-  private static final int k_backLeftSteeringZero = 172; //-1953; //-2093; //-2000; //-1958;
-  private static final int k_backRightSteeringZero = -944; //1338; //1364; //1334;
-  private static final int k_frontRightSteeringZero = 179; //153; //153; //-2000; //-2058;
+  private static final int k_frontLeftSteeringZero = 1329;
+  private static final int k_backLeftSteeringZero = 172;
+  private static final int k_backRightSteeringZero = -944;
+  private static final int k_frontRightSteeringZero = -2142; //179;
 
   public static final double k_maxDriveSpeed = 700;
   private static final double k_frontLeftMinDrivePower = 0.26;
@@ -123,20 +123,128 @@ public class DriveSubsystem extends SubsystemBase {
   // private static final double k_frontRightDriveF = 0.91 / k_maxDriveSpeed;
 
   // public static final double k_drivePTerm = 0.001;
-  // public static final double k_driveITerm = 0.0001;
+  // public static final double k_driveITerm = 0.0002;
   // public static final double k_driveIZone = 100;
 
   // private static final double k_steeringP = 0.85;
   // private static final double k_frontLeftSteeringP = k_steeringP / 360;
-  // private static final double k_backLeftSteeringP = 0.80 / 360;
+  // private static final double k_backLeftSteeringP = k_steeringP / 360;
+  // private static final double k_backRightSteeringP = k_steeringP / 360;
+  // private static final double k_frontRightSteeringP = 0.80 / 360;
+
+  // private static final double k_steeringD = 0.01;
+  // private static final double k_frontLeftSteeringD = k_steeringD;
+  // private static final double k_backLeftSteeringD = k_steeringD;
+  // private static final double k_backRightSteeringD = k_steeringD;
+  // private static final double k_frontRightSteeringD = 0.015;
+
+  // public static final double k_maxDriveSpeedMetersPerSecond = k_maxDriveSpeed / k_ticksPerMeter;
+  // public static final double k_maxAngularSpeed = 2.0; // radians / sec
+
+      // SwerveBot03 (Yellow Robot new design / new motors)
+  // private final boolean k_invertGyro = false;
+  // private final double k_turnDeadZone = 3;
+  // private final double k_turnP = 10.0 / 180.0;
+  // private final double k_cameraAngle = 0;
+  // private final double k_wheelSeparation = (7.406 * 2.54) / 100;
+  // private final double k_driveBaseRadius = Math.sqrt(k_wheelSeparation * k_wheelSeparation);
+  // static final double k_ticksPerMeter = 1037.75 / 1.72;
+
+  // private final Translation2d m_frontLeftLocation = new Translation2d(k_wheelSeparation / 2, k_wheelSeparation / 2);
+  // private final Translation2d m_backLeftLocation = new Translation2d(-k_wheelSeparation / 2, k_wheelSeparation / 2);
+  // private final Translation2d m_backRightLocation = new Translation2d(-k_wheelSeparation / 2, -k_wheelSeparation / 2);
+  // private final Translation2d m_frontRightLocation = new Translation2d(k_wheelSeparation / 2, -k_wheelSeparation / 2);
+
+  // private static final double k_frontLeftMinSteeringPower = 0.3;
+  // private static final double k_backLeftMinSteeringPower = 0.3;
+  // private static final double k_backRightMinSteeringPower = 0.3;
+  // private static final double k_frontRightMinsteeringPower = 0.3;
+
+  // private static final int k_frontLeftSteeringZero = -905; //-909;
+  // private static final int k_backLeftSteeringZero = -2004; //-1943;
+  // private static final int k_backRightSteeringZero = -858; //-897;
+  // private static final int k_frontRightSteeringZero = 200; //-2066;
+
+  // public static final double k_maxDriveSpeed = 700;
+  // private static final double k_frontLeftMinDrivePower = 0.28;
+  // private static final double k_backLeftMinDrivePower = 0.27;
+  // private static final double k_backRightMinDrivePower = 0.28;
+  // private static final double k_frontRightMinDrivePower = 0.27;
+
+  // private static final double k_frontLeftDriveF = 0.92 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 0.91 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 0.94 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 0.93 / k_maxDriveSpeed;
+
+  // public static final double k_drivePTerm = 0.001;
+  // public static final double k_driveITerm = 0.0002;
+  // public static final double k_driveIZone = 50;
+
+  // private static final double k_steeringP = 0.80;
+  // private static final double k_frontLeftSteeringP = k_steeringP / 360;
+  // private static final double k_backLeftSteeringP = k_steeringP/ 360;
   // private static final double k_backRightSteeringP = k_steeringP / 360;
   // private static final double k_frontRightSteeringP = k_steeringP / 360;
 
-  // private static final double k_steerintI = 0.015;
-  // private static final double k_frontLeftSteeringD = k_steerintI;
-  // private static final double k_backLeftSteeringD = 0.02;
-  // private static final double k_backRightSteeringD = k_steerintI;
-  // private static final double k_frontRightSteeringD = 0.02;
+  // private static final double k_steeringD = 0.015;
+  // private static final double k_frontLeftSteeringD = k_steeringD;
+  // private static final double k_backLeftSteeringD = k_steeringD;
+  // private static final double k_backRightSteeringD = k_steeringD;
+  // private static final double k_frontRightSteeringD = k_steeringD;
+
+  // public static final double k_maxDriveSpeedMetersPerSecond = k_maxDriveSpeed / k_ticksPerMeter;
+  // public static final double k_maxAngularSpeed = 2.0; // radians / sec
+
+    // SwerveBot06 (Grey Robot new design / new motors)
+  // private final boolean k_invertGyro = false;
+  // private final double k_turnDeadZone = 3;
+  // private final double k_turnP = 10.0 / 180.0;
+  // private final double k_cameraAngle = 0;
+  // private final double k_wheelSeparation = (7.406 * 2.54) / 100;
+  // private final double k_driveBaseRadius = Math.sqrt(k_wheelSeparation * k_wheelSeparation);
+  // static final double k_ticksPerMeter = 1037.75 / 1.72;
+
+  // private final Translation2d m_frontLeftLocation = new Translation2d(k_wheelSeparation / 2, k_wheelSeparation / 2);
+  // private final Translation2d m_backLeftLocation = new Translation2d(-k_wheelSeparation / 2, k_wheelSeparation / 2);
+  // private final Translation2d m_backRightLocation = new Translation2d(-k_wheelSeparation / 2, -k_wheelSeparation / 2);
+  // private final Translation2d m_frontRightLocation = new Translation2d(k_wheelSeparation / 2, -k_wheelSeparation / 2);
+
+  // private static final double k_frontLeftMinSteeringPower = 0.34;
+  // private static final double k_backLeftMinSteeringPower = 0.30;
+  // private static final double k_backRightMinSteeringPower = 0.34;
+  // private static final double k_frontRightMinsteeringPower = 0.30;
+
+  // private static final int k_frontLeftSteeringZero = -888;
+  // private static final int k_backLeftSteeringZero = -2002;
+  // private static final int k_backRightSteeringZero = -888;
+  // private static final int k_frontRightSteeringZero = -1983;
+
+  // public static final double k_maxDriveSpeed = 710;
+  // private static final double k_frontLeftMinDrivePower = 0.28;
+  // private static final double k_backLeftMinDrivePower = 0.29;
+  // private static final double k_backRightMinDrivePower = 0.28;
+  // private static final double k_frontRightMinDrivePower = 0.28;
+
+  // private static final double k_frontLeftDriveF = 0.94 / k_maxDriveSpeed; //0.92 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 0.90 / k_maxDriveSpeed; //0.90 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 0.96 / k_maxDriveSpeed; //0.92 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 0.96 / k_maxDriveSpeed; //0.92 / k_maxDriveSpeed;
+
+  // public static final double k_drivePTerm = 0.002;
+  // public static final double k_driveITerm = 0.0001;
+  // public static final double k_driveIZone = 50;
+
+  // private static final double k_steeringP = 0.75;
+  // private static final double k_frontLeftSteeringP = k_steeringP/ 360;
+  // private static final double k_backLeftSteeringP = k_steeringP/ 360;
+  // private static final double k_backRightSteeringP = k_steeringP / 360;
+  // private static final double k_frontRightSteeringP = k_steeringP / 360;
+
+  // private static final double k_steeringD = 0.01;
+  // private static final double k_frontLeftSteeringD = k_steeringD;
+  // private static final double k_backLeftSteeringD = k_steeringD;
+  // private static final double k_backRightSteeringD = k_steeringD;
+  // private static final double k_frontRightSteeringD = k_steeringD;
 
   // public static final double k_maxDriveSpeedMetersPerSecond = k_maxDriveSpeed / k_ticksPerMeter;
   // public static final double k_maxAngularSpeed = 2.0; // radians / sec
